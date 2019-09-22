@@ -1,8 +1,12 @@
+var showUser = window.document.getElementById("myAlert");
 var password="";
 var userAnswer;
 characterType(userAnswer); 
 var pwLength;
 passwordLength(pwLength);
+if (isNaN(pwLength)) {
+    passwordLength(pwLength)
+}
 alert("Your password will contain numbers. And be "+pwLength+" characters in length.");
 // Computes users input for desired password
 
@@ -19,18 +23,21 @@ switch (userAnswer) {
             randomNumberBetween0and9 = Math.floor(Math.random() * 10);
             password ="" + password + randomNumberBetween0and9;
         }
-        alert("Your password is: "+password);
+        displayInfo(password);
         break; 
 
     //password for uppercase characters
     case 'u':
-         alert(upperCasePassword(pwLength));
+        upperCasePassword(pwLength);
+        displayInfo(password);
          break;
 
     //password for lowercase characters
-    case 'l':
-            alert(lowerCasePassword(pwLength));
+    case 'l':    
+        lowerCasePassword(pwLength);
+        displayInfo(password);
         break;
+
         default:
         alert("One of the answers given did not meet the requirements!");
 }
@@ -46,13 +53,13 @@ function characterType() {
 function passwordLength() {
     pwLength = prompt('Please enter your desired password length, 8-128 characters.');
     
-    while (pwLength<8 || pwLength>128) {
+    while (pwLength<8 || pwLength>128 || isNaN(pwLength)) {
         pwLength = prompt('Password must be 8-128 characters in length!');   
     }
     return pwLength;
         }
 function upperCasePassword(){
-            var password = '';
+            
             var random_ascii;
             var ascii_low = 65;
             var ascii_high = 90
@@ -80,6 +87,12 @@ function randomSpecialChar() {
     for (var i=0; i<pwLength;i++) {
         password+=s.substr(Math.floor(s.length*Math.random()), 1)
     }
-   alert("Your password is :"+password);
+    displayInfo(password);
+   //alert("Your password is :"+password);
 } 
-        
+
+
+function displayInfo() {
+    var passw =password;
+    showUser.innerHTML = "Here is your generated password: " + passw;
+}
