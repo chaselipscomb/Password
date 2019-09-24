@@ -13,6 +13,10 @@ width: 70%;
 background-color: rgb(0, 0, 0);
 border: 10px solid grey;
 }
+#copy {
+    display: block;
+    margin: 0 auto;
+}
 
 #myAlert {
     height: auto;

@@ -1,7 +1,12 @@
+document.addEventListener("DOMContentLoaded", function(event) { 
+ 
+
 var showUser = window.document.getElementById("myAlert");
 var password="";
-var userAnswer;
+var userAnswer="";
+
 characterType(userAnswer); 
+
 var pwLength;
 passwordLength(pwLength);
 if (isNaN(pwLength)) {
@@ -96,3 +101,6 @@ function displayInfo() {
     var passw =password;
     showUser.innerHTML = "Here is your generated password: " + passw;
 }
+
+   //do work
+});
