@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() { 
  
 var start = confirm("Would you like to start?")
-if (confirm-true) {
+if (confirm=true) {
 
 var copyButton = document.getElementById("copy")
 var showUser = window.document.getElementById("myAlert");
