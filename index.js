@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() { 
  
+var start = confirm("Would you like to start?")
+if (confirm-true) {
+
 var copyButton = document.getElementById("copy")
 var showUser = window.document.getElementById("myAlert");
 var password="";
@@ -123,5 +126,9 @@ function displayInfo() {
  console.log(password);
 */
    //do work
+
+
+}
+else {};
 });
 
