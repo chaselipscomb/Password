@@ -1,10 +1,9 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function() { 
  
-
+var copyButton = document.getElementById("copy")
 var showUser = window.document.getElementById("myAlert");
 var password="";
 var userAnswer="";
-
 characterType(userAnswer); 
 
 var pwLength;
@@ -99,8 +98,30 @@ function randomSpecialChar() {
 
 function displayInfo() {
     var passw =password;
-    showUser.innerHTML = "Here is your generated password: " + passw;
+    showUser.innerHTML = passw;
 }
 
+
+//Password.... to Clipboard
+/*function copyStringToClipboard (str) {
+    // Create new element
+    var el = document.createElement('textarea');
+    // Set value (string to be copied)
+    el.value = str;
+    // Set non-editable to avoid focus and move outside of view
+    el.setAttribute('readonly', '');
+    el.style = {position: 'absolute', left: '-9999px'};
+    document.body.appendChild(el);
+    // Select text inside element
+    el.select();
+    // Copy text to clipboard
+    document.execCommand('copy');
+    // Remove temporary element
+    document.body.removeChild(el);
+ }
+ copyStringToClipboard(password);
+ console.log(password);
+*/
    //do work
 });
+

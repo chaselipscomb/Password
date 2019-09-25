@@ -26,8 +26,18 @@ border: 10px solid grey;
     margin: 5% 20%;
     padding: 20px;
     color: black;
-}
+    display: block;
 
+}
+#myAlertt {
+    height: auto;
+    width:auto;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin: 5% 20%;
+    padding: 20px;
+    color: black;
+}
 @media (max-width:600px){
 .container{
     width: 380px;
