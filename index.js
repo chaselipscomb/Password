@@ -1,134 +1,254 @@
-document.addEventListener("DOMContentLoaded", function() { 
- 
-var start = confirm("Would you like to start?")
-if (confirm=true) {
-
-var copyButton = document.getElementById("copy")
-var showUser = window.document.getElementById("myAlert");
-var password="";
-var userAnswer="";
-characterType(userAnswer); 
-
-var pwLength;
-passwordLength(pwLength);
-if (isNaN(pwLength)) {
-    passwordLength(pwLength)
-}
-alert("Your password will contain numbers. And be "+pwLength+" characters in length.");
-// Computes users input for desired password
-
-switch (userAnswer) {
-    //password for special characters
-    case 's':
-        randomSpecialChar(pwLength);
-    break; 
-
-    //password for numeric characters
-    case 'n':
-        var randomNumberBetween0and9;
-        for (var i=0;i<pwLength-1;i++) {
-            randomNumberBetween0and9 = Math.floor(Math.random() * 10);
-            password ="" + password + randomNumberBetween0and9;
-        }
-        displayInfo(password);
-        break; 
-
-    //password for uppercase characters
-    case 'u':
-        upperCasePassword(pwLength);
-        displayInfo(password);
-         break;
-
-    //password for lowercase characters
-    case 'l':    
-        lowerCasePassword(pwLength);
-        displayInfo(password);
-        break;
-
-        default:
-        alert("One of the answers given did not meet the requirements!");
-}
-
-///////////FUNCTIONS
-//Determines which character type user wants
-function characterType() {
-    userAnswer = prompt("For your password, enter the letter for the criteria you would like. For Special Characters, press 'S'. For Numeric, press 'N'. For Lowercase, press 'L'. For Uppercase, press 'U'");
-    userAnswer=userAnswer.toLowerCase();
-    return userAnswer;
-}
-//Determines password length user wants
-function passwordLength() {
-    pwLength = prompt('Please enter your desired password length, 8-128 characters.');
-    
-    while (pwLength<8 || pwLength>128 || isNaN(pwLength)) {
-        pwLength = prompt('Password must be 8-128 characters in length!');   
+// Array of special characters to be included in password
+var specialCharacters = [
+    "@",
+    "%",
+    "+",
+    "\\",
+    "/",
+    "'",
+    "!",
+    "#",
+    "$",
+    "^",
+    "?",
+    ":",
+    ",",
+    ")",
+    "(",
+    "}",
+    "{",
+    "]",
+    "[",
+    "~",
+    "-",
+    "_",
+    "."
+  ];
+  
+  // Array of numeric characters to be included in password
+  var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  
+  // Array of lowercase characters to be included in password
+  var lowerCasedCharacters = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ];
+  
+  // Array of uppercase characters to be included in password
+  var upperCasedCharacters = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ];
+  
+  // Function to prompt user for password options
+  function getPasswordOptions() {
+    // Variable to store length of password from user input
+    var length = parseInt(prompt(
+      "How many characters would you like your password to contain?"
+    ));
+  
+    // Conditional statement to check if password length is a number. Prompts end if this evaluates false
+    if (isNaN(length) === true) {
+      alert("Password length must be provided as a number");
+      return;
     }
-    return pwLength;
-        }
-function upperCasePassword(){
-            
-            var random_ascii;
-            var ascii_low = 65;
-            var ascii_high = 90
-            for (var i = 0; i < pwLength; i++) {
-                random_ascii = Math.floor((Math.random() * (ascii_high - ascii_low)) + ascii_low);
-                password += String.fromCharCode(random_ascii)
-            }
-            return password
-        }
-
-function lowerCasePassword(){
-    var random_ascii;
-    for(var i = 0; i < pwLength; i++) {
-        random_ascii = Math.floor((Math.random() * 25) + 97);
-        password += String.fromCharCode(random_ascii)
+  
+    // Conditional statement to check if password length is at least 8 characters long. Prompts end if this evaluates false
+    if (length < 8) {
+      alert("Password length must be at least 8 characters");
+      return;
     }
-    return password
-}
-
-function randomSpecialChar() {
-    // example set of special chars as a string in no particular order
-    var s = "!\§$%&/()=?\@^_-+~`,./{}";
-
-    // generating a random index into the string and extracting the character at that position
-    for (var i=0; i<pwLength;i++) {
-        password+=s.substr(Math.floor(s.length*Math.random()), 1)
+  
+    // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
+    if (length > 128) {
+      alert("Password length must less than 129 characters");
+      return;
     }
-    displayInfo(password);
-   //alert("Your password is :"+password);
-} 
-
-
-function displayInfo() {
-    var passw =password;
-    showUser.innerHTML = passw;
-}
-
-
-//Password.... to Clipboard
-/*function copyStringToClipboard (str) {
-    // Create new element
-    var el = document.createElement('textarea');
-    // Set value (string to be copied)
-    el.value = str;
-    // Set non-editable to avoid focus and move outside of view
-    el.setAttribute('readonly', '');
-    el.style = {position: 'absolute', left: '-9999px'};
-    document.body.appendChild(el);
-    // Select text inside element
-    el.select();
-    // Copy text to clipboard
-    document.execCommand('copy');
-    // Remove temporary element
-    document.body.removeChild(el);
- }
- copyStringToClipboard(password);
- console.log(password);
-*/
-   //do work
-
-
-}
-else {};
-});
-
+  
+    // Variable to store boolean regarding the inclusion of special characters
+    var hasSpecialCharacters = confirm(
+      "Click OK to confirm including special characters."
+    );
+  
+    // Variable to store boolean regarding the inclusion of numeric characters
+    var hasNumericCharacters = confirm(
+      "Click OK to confirm including numeric characters."
+    );
+  
+    // Variable to store boolean regarding the inclusion of lowercase characters
+    var hasLowerCasedCharacters = confirm(
+      "Click OK to confirm including lowercase characters."
+    );
+  
+    // Variable to store boolean regarding the inclusion of uppercase characters
+    var hasUpperCasedCharacters = confirm(
+      "Click OK to confirm including uppercase characters."
+    );
+  
+    // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+    if (
+      hasSpecialCharacters === false &&
+      hasNumericCharacters === false &&
+      hasLowerCasedCharacters === false &&
+      hasUpperCasedCharacters === false
+    ) {
+      alert("Must select at least one character type");
+      return;
+    }
+  
+    // Object to store user input
+    var passwordOptions = {
+      length: length,
+      hasSpecialCharacters: hasSpecialCharacters,
+      hasNumericCharacters: hasNumericCharacters,
+      hasLowerCasedCharacters: hasLowerCasedCharacters,
+      hasUpperCasedCharacters: hasUpperCasedCharacters
+    };
+  
+    return passwordOptions;
+  }
+  
+  // Function for getting a random element from an array
+  function getRandom(arr) {
+    var randIndex = Math.floor(Math.random() * arr.length);
+    var randElement = arr[randIndex];
+  
+    return randElement;
+  }
+  
+  // Function to generate password with user input
+  function generatePassword() {
+    var options = getPasswordOptions();
+    // Variable to store password as it's being concatenated
+    var result = [];
+  
+    // Array to store types of characters to include in password
+    var possibleCharacters = [];
+  
+    // Array to contain one of each type of chosen character to ensure each will be used
+    var guaranteedCharacters = [];
+  
+    // Conditional statement that adds array of special characters into array of possible characters based on user input
+    // Push new random special character to guaranteedCharacters
+    if (options.hasSpecialCharacters) {
+      possibleCharacters = possibleCharacters.concat(specialCharacters);
+      guaranteedCharacters.push(getRandom(specialCharacters));
+    }
+  
+    // Conditional statement that adds array of numeric characters into array of possible characters based on user input
+    // Push new random special character to guaranteedCharacters
+    if (options.hasNumericCharacters) {
+      possibleCharacters = possibleCharacters.concat(numericCharacters);
+      guaranteedCharacters.push(getRandom(numericCharacters));
+    }
+  
+    // Conditional statement that adds array of lowercase characters into array of possible characters based on user input
+    // Push new random lower-cased character to guaranteedCharacters
+    if (options.hasLowerCasedCharacters) {
+      possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+      guaranteedCharacters.push(getRandom(lowerCasedCharacters));
+    }
+  
+    // Conditional statement that adds array of uppercase characters into array of possible characters based on user input
+    // Push new random upper-cased character to guaranteedCharacters
+    if (options.hasUpperCasedCharacters) {
+      possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+      guaranteedCharacters.push(getRandom(upperCasedCharacters));
+    }
+  
+    // For loop to iterate over the password length from the options object, selecting random indices from the array of possible characters and concatenating those characters into the result variable
+    for (var i = 0; i < options.length; i++) {
+      var possibleCharacter = getRandom(possibleCharacters);
+  
+      result.push(possibleCharacter);
+    }
+  
+    // Mix in at least one of each guaranteed character in the result
+    for (var i = 0; i < guaranteedCharacters.length; i++) {
+      result[i] = guaranteedCharacters[i];
+    }
+  
+    // Transform the result into a string and pass into writePassword
+    return result.join("");
+  }
+  
+  // Get references to the #copy and #generate elements
+  var copyBtn = document.querySelector("#copy");
+  var generateBtn = document.querySelector("#generate");
+  
+  // Write password to the #password input
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  
+    copyBtn.removeAttribute("disabled");
+    copyBtn.focus();
+  }
+  
+  function copyToClipboard() {
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.select();
+    document.execCommand("copy");
+  
+    alert(
+      "Your password " + passwordText.value + " was copied to your clipboard."
+    );
+  }
+  
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
+  
+  // Add event listener to copy button
+  copyBtn.addEventListener("click", copyToClipboard);
+  
