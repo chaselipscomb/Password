@@ -108,7 +108,6 @@ var specialCharacters = [
       alert("Password length must be at least 8 characters");
       return;
     }
-    // Condition Statement
     // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
     if (length > 128) {
       alert("Password length must less than 129 characters");
