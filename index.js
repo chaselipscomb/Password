@@ -230,7 +230,7 @@ var specialCharacters = [
   function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-  
+    // setting the password
     passwordText.value = password;
   
     copyBtn.removeAttribute("disabled");
