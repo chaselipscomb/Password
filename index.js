@@ -242,7 +242,7 @@ var specialCharacters = [
   
     passwordText.select();
     document.execCommand("copy");
-  
+  // Alerting Copy to Clipboard
     alert(
       "Your password " + passwordText.value + " was copied to your clipboard."
     );
