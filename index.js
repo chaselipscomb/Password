@@ -134,7 +134,7 @@ var specialCharacters = [
     var hasUpperCasedCharacters = confirm(
       "Click OK to confirm including uppercase characters."
     );
-  
+    // if statement conditional
     // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
     if (
       hasSpecialCharacters === false &&
