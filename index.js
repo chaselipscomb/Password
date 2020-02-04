@@ -89,7 +89,6 @@ var specialCharacters = [
   ];
   
   // Function to prompt user for password options
-  // getPasswordOptions()
   function getPasswordOptions() {
     // Variable to store length of password from user input
     // var length = parseInt(prompt)
