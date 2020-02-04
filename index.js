@@ -212,7 +212,7 @@ var specialCharacters = [
   
       result.push(possibleCharacter);
     }
-  
+    // password generated on user input
     // Mix in at least one of each guaranteed character in the result
     for (var i = 0; i < guaranteedCharacters.length; i++) {
       result[i] = guaranteedCharacters[i];
