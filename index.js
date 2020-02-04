@@ -91,6 +91,7 @@ var specialCharacters = [
   // Function to prompt user for password options
   function getPasswordOptions() {
     // Variable to store length of password from user input
+    // var length = parseInt(prompt)
     var length = parseInt(prompt(
       "How many characters would you like your password to contain?"
     ));
@@ -106,7 +107,6 @@ var specialCharacters = [
       alert("Password length must be at least 8 characters");
       return;
     }
-  
     // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
     if (length > 128) {
       alert("Password length must less than 129 characters");
@@ -132,7 +132,6 @@ var specialCharacters = [
     var hasUpperCasedCharacters = confirm(
       "Click OK to confirm including uppercase characters."
     );
-  
     // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
     if (
       hasSpecialCharacters === false &&
@@ -163,7 +162,7 @@ var specialCharacters = [
   
     return randElement;
   }
-  
+  // Generate password here
   // Function to generate password with user input
   function generatePassword() {
     var options = getPasswordOptions();
@@ -210,7 +209,7 @@ var specialCharacters = [
   
       result.push(possibleCharacter);
     }
-  
+    // password generated on user input
     // Mix in at least one of each guaranteed character in the result
     for (var i = 0; i < guaranteedCharacters.length; i++) {
       result[i] = guaranteedCharacters[i];
@@ -228,19 +227,19 @@ var specialCharacters = [
   function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-  
+    // setting the password
     passwordText.value = password;
   
     copyBtn.removeAttribute("disabled");
     copyBtn.focus();
   }
-  
+  // Copy to Clipboard function
   function copyToClipboard() {
     var passwordText = document.querySelector("#password");
   
     passwordText.select();
     document.execCommand("copy");
-  
+  // Alerting Copy to Clipboard
     alert(
       "Your password " + passwordText.value + " was copied to your clipboard."
     );
