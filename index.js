@@ -165,7 +165,7 @@ var specialCharacters = [
   
     return randElement;
   }
-  
+  // Generate password here
   // Function to generate password with user input
   function generatePassword() {
     var options = getPasswordOptions();
