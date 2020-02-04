@@ -236,7 +236,7 @@ var specialCharacters = [
     copyBtn.removeAttribute("disabled");
     copyBtn.focus();
   }
-  
+  // Copy to Clipboard function
   function copyToClipboard() {
     var passwordText = document.querySelector("#password");
   
